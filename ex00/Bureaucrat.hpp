@@ -15,8 +15,15 @@ class Bureaucrat
 		Bureaucrat(const Bureaucrat& ref);
 		Bureaucrat& operator=(const Bureaucrat& ref);
 
-		const std::string	getName(void);
-		int					getGrade(void);
+		const std::string	getName(void) const;
+		int					getGrade(void) const;
+		void				setGrade(int grade);
+
+		void	GradeTooLowException();
+		void	GradeTooHighException();
+
+		void	incrementGrade(void);
+		void	decrementGrade(void);
 };
 
 #endif

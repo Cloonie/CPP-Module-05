@@ -2,8 +2,8 @@
 
 int	main(void)
 {
-	Bureaucrat man("John", 150);
+	Bureaucrat b1("John", 1);
+	Bureaucrat b2("Cena", 150);
 
-	// std::cout << man.getName << std::endl;
-	// std::cout << man.getGrade << std::endl;
+	b1.incrementGrade();
 }

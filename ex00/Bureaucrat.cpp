@@ -2,21 +2,21 @@
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
 {
-	std::cout << "A default Bureaucrat has been constructed" << std::endl;
+	std::cout << "A default Bureaucrat with a grade " << _grade << " has been constructed" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
+Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 {
-	if (grade < 1)
-		std::cout << "Bureaucrat::GradeTooHighException" << std::endl;
-	else if (grade > 150)
-		std::cout << "Bureaucrat::GradeTooLowException" << std::endl;
-	else
+	try
 	{
-		this->_grade = grade;
-		std::cout << "A Bureaucrat named " << _name << " with a grade "
-			<< _grade << " has been constructed" << std::endl;
+		setGrade(grade);
 	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Error during Bureaucrat named " << _name << " construction: " << e.what() << std::endl;
+	}
+	std::cout << "A Bureaucrat named " << _name << " with a grade "
+		<< _grade << " has been constructed" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
@@ -27,38 +27,69 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat::Bureaucrat(const Bureaucrat& ref)
 {
-	this->_name = ref.getName();
-	this->_grade = ref.getGrade();
 	std::cout << "A Bureaucrat named " << _name << " with a grade "
 		<< _grade << " has been constructed as a copy" << std::endl;
+	*this = ref;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& ref)
 {
 	if (this != &ref)
 	{
-		this->_name = ref.getName();
 		this->_grade = ref.getGrade();
 	}
 	return (*this);
 }
 
-const std::string Bureaucrat::getName()
+const std::string Bureaucrat::getName() const
 {
-	return (Bureaucrat::_name);
+	return (_name);
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
-	return (Bureaucrat::_grade);
+	return (_grade);
 }
 
-// const std::string Bureaucrat::GradeTooHighException()
-// {
-// 	return ("Grade Too High, Highest grade: 1\n");
-// }
+void Bureaucrat::setGrade(int grade)
+{
+	_grade = grade;
+	if (grade < 1)
+		GradeTooHighException();
+	else if (grade > 150)
+		GradeTooLowException();
+}
 
-// const std::string Bureaucrat::GradeTooLowException()
-// {
-// 	return ("Grade Too Low, Lowest grade: 150\n");
-// }
+void Bureaucrat::GradeTooHighException()
+{
+	throw std::out_of_range("Grade Too High");
+}
+
+void Bureaucrat::GradeTooLowException()
+{
+	throw std::out_of_range("Grade Too Low");
+}
+
+void Bureaucrat::incrementGrade()
+{
+	try
+	{
+		setGrade(_grade - 1);
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Error during increment of Bureaucrat named " << _name << ": " << e.what() << std::endl;
+	}
+}
+
+void Bureaucrat::decrementGrade()
+{
+	try
+	{
+		setGrade(_grade + 1);
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Error during decrement of Bureaucrat named " << _name << ": " << e.what() << std::endl;
+	}
+}
