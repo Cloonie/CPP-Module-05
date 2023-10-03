@@ -27,7 +27,7 @@ Bureaucrat::~Bureaucrat()
 		<< _grade << "] has been destructed" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& ref)
+Bureaucrat::Bureaucrat(const Bureaucrat& ref) : _name(ref._name), _grade(ref._grade)
 {
 	std::cout << "A Bureaucrat named [" << _name << "] with a grade ["
 		<< _grade << "] has been constructed as a copy" << std::endl;
@@ -39,9 +39,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& ref)
 	std::cout << "A Bureaucrat named [" << _name << "] with a grade ["
 		<< _grade << "] has been assign new grade [" << ref.getGrade() << "]" << std::endl;
 	if (this != &ref)
-	{
 		this->_grade = ref.getGrade();
-	}
 	return (*this);
 }
 
