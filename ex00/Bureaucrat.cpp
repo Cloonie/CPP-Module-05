@@ -2,38 +2,42 @@
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
 {
-	std::cout << "A default Bureaucrat with a grade " << _grade << " has been constructed" << std::endl;
+	std::cout << "A default Bureaucrat named [" << _name << "] with a grade ["
+		<< _grade << "] has been constructed" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
+Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
 {
 	try
 	{
+		std::cout << "A Bureaucrat named [" << _name << "] with a grade ["
+			<< _grade << "] has been constructed" << std::endl;
 		setGrade(grade);
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << "Error during Bureaucrat named " << _name << " construction: " << e.what() << std::endl;
+		std::cerr << "Error during Bureaucrat named " << _name
+		<< " construction: " << e.what() << std::endl;
 	}
-	std::cout << "A Bureaucrat named " << _name << " with a grade "
-		<< _grade << " has been constructed" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "A Bureaucrat named " << _name << " with a grade "
-		<< _grade << " has been destructed" << std::endl;
+	std::cout << "A Bureaucrat named [" << _name << "] with a grade ["
+		<< _grade << "] has been destructed" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& ref)
 {
-	std::cout << "A Bureaucrat named " << _name << " with a grade "
-		<< _grade << " has been constructed as a copy" << std::endl;
+	std::cout << "A Bureaucrat named [" << _name << "] with a grade ["
+		<< _grade << "] has been constructed as a copy" << std::endl;
 	*this = ref;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& ref)
 {
+	std::cout << "A Bureaucrat named [" << _name << "] with a grade ["
+		<< _grade << "] has been assign new grade [" << ref.getGrade() << "]" << std::endl;
 	if (this != &ref)
 	{
 		this->_grade = ref.getGrade();
@@ -74,6 +78,8 @@ void Bureaucrat::incrementGrade()
 {
 	try
 	{
+		std::cout << "Bureaucrat named [" << _name << "] with a grade [" << _grade
+			<< "] has been increment to [" << _grade - 1 << "]" << std::endl;
 		setGrade(_grade - 1);
 	}
 	catch (const std::exception& e)
@@ -86,10 +92,18 @@ void Bureaucrat::decrementGrade()
 {
 	try
 	{
+		std::cout << "Bureaucrat named [" << _name << "] with a grade [" << _grade
+			<< "] has been decrement to [" << _grade + 1 << "]" << std::endl;
 		setGrade(_grade + 1);
 	}
 	catch (const std::exception& e)
 	{
 		std::cerr << "Error during decrement of Bureaucrat named " << _name << ": " << e.what() << std::endl;
 	}
+}
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
+{
+	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+	return os;
 }
