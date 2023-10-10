@@ -5,10 +5,11 @@ int	main(void)
 {
 	// ~~~~ default constructor ~~~
 	std::cout << "\n~~~ DEFAULT CONSTRUCTOR ~~~" << std::endl;
-	Bureaucrat b1("John", 3);
+	Bureaucrat b1("John", 4);
 	Form f1("RegisterForm", false, 3, 3);
 
 	f1.beSigned(&b1);
+	b1.signForm(&f1);
 
 	std::cout << b1 << std::endl;
 	std::cout << f1 << std::endl;

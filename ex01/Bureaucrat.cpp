@@ -102,10 +102,10 @@ void Bureaucrat::decrementGrade()
 
 void	Bureaucrat::signForm(Form *f)
 {
-		if (this->getGrade() <= f->get_gradeSign())
-			std::cout << this->getName() << " signed " << f->get_name();
-		else
-			std::cout << this->getName() << " couldn't sign " << f->get_name() << " because";
+	if (this->getGrade() <= f->get_gradeSign())
+		std::cout << this->getName() << " signed " << f->get_name();
+	else
+		std::cout << this->getName() << " couldn't sign " << f->get_name() << " because grade not high enough\n";
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
