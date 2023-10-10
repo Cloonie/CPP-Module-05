@@ -31,5 +31,4 @@ class Bureaucrat
 // Define the << operator as a global function
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
 
-
 #endif
