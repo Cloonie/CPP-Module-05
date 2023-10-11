@@ -3,6 +3,7 @@
 Form::Form() : _name("Default"), _isSigned(false), _gradeSign(150), _gradeExec(150)
 {
 	std::cout << "A default Form named [" << _name <<
+		"] with signed status of [" << _isSigned <<
 		"] has been constructed" << std::endl;
 	checkGrade(_gradeSign);
 	checkGrade(_gradeExec);
@@ -17,12 +18,14 @@ Form::Form(const std::string name, bool isSigned, int gradeSign, int gradeExec)
 	checkGrade(_gradeSign);
 	checkGrade(_gradeExec);
 	std::cout << "A Form named [" << _name <<
+		"] with signed status of [" << _isSigned <<
 		"] has been constructed" << std::endl;
 }
 
 Form::~Form()
 {
 	std::cout << "A Form named [" << _name <<
+		"] with signed status of [" << _isSigned <<
 		"] has been destructed" << std::endl;
 }
 
@@ -92,20 +95,28 @@ void Form::beSigned(Bureaucrat *b)
 {
 	try
 	{
+		if (b->getGrade() < 1)
+			GradeTooHighException();
+		else if (b->getGrade() > 150)
+			GradeTooLowException();
 		if (b->getGrade() <= get_gradeSign())
+		{
 			_isSigned = true;
+			std::cerr << b->getName() << " signed " << get_name() << std::endl;
+		}
 		else
 			GradeTooLowException();
+
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << "Error during signing " << _name << ": " << e.what() << std::endl;
+		std::cout << b->getName() << " couldn't sign " << get_name() << " because " << e.what() << std::endl;
 	}
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& form)
 {
-	os << "Name: [" << form.get_name() << "], Signed: [" << form.get_isSigned()
+	os << "Form - Name: [" << form.get_name() << "], Signed: [" << form.get_isSigned()
 		<< "], Grade to Sign: [" << form.get_gradeSign()
 		<< "], Grade to Exec: [" << form.get_gradeExec() << "]";
 	return os;
