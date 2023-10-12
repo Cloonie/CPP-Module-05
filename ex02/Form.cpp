@@ -96,18 +96,18 @@ void Form::NotSignedException()
 	throw std::out_of_range("Form not Signed");
 }
 
-void Form::beSigned(Bureaucrat *b)
+void Form::beSigned(const Bureaucrat& b)
 {
 	try
 	{
-		if (b->getGrade() < 1)
+		if (b.getGrade() < 1)
 			GradeTooHighException();
-		else if (b->getGrade() > 150)
+		else if (b.getGrade() > 150)
 			GradeTooLowException();
-		if (b->getGrade() <= get_gradeSign())
+		if (b.getGrade() <= get_gradeSign())
 		{
 			_isSigned = true;
-			std::cerr << b->getName() << " signed " << get_name() << std::endl;
+			std::cerr << b.getName() << " signed " << get_name() << std::endl;
 		}
 		else
 			GradeTooLowException();
@@ -115,7 +115,7 @@ void Form::beSigned(Bureaucrat *b)
 	}
 	catch (const std::exception& e)
 	{
-		std::cout << b->getName() << " couldn't sign " << get_name() << " because " << e.what() << std::endl;
+		std::cout << b.getName() << " couldn't sign " << get_name() << " because " << e.what() << std::endl;
 	}
 }
 

@@ -30,7 +30,8 @@ class Bureaucrat
 		void	incrementGrade(void);
 		void	decrementGrade(void);
 
-		void	signForm(Form *f);
+		void	signForm(Form & form);
+		void	executeForm(Form const & form);
 };
 
 // Define the << operator as a global function

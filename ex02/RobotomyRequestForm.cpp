@@ -23,12 +23,12 @@ RobotomyRequestForm& RobotomyRequestForm:: operator=(const RobotomyRequestForm& 
 	return (*this);
 }
 
-void	RobotomyRequestForm::execute(const Bureaucrat& executor) const
+void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	if (this->get_isSigned() == false)
 		std::cout << "Form is not signed" << std::endl;
 	else if (executor.getGrade() > this->get_gradeExec())
-		std::cout << "Grade requirements not met to execute" << std::endl;
+		std::cout << "Grade requirements not met to execute form" << std::endl;
 	else
 	{
 		// Seed the random number generator with the current time

@@ -23,16 +23,16 @@ ShrubberyCreationForm& ShrubberyCreationForm:: operator=(const ShrubberyCreation
 	return (*this);
 }
 
-void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
+void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	if (this->get_isSigned() == false)
 		std::cout << "Form is not signed" << std::endl;
 	else if (executor.getGrade() > this->get_gradeExec())
-		std::cout << "Grade requirements not met to execute" << std::endl;
+		std::cout << "Grade requirements not met to execute form" << std::endl;
 	else
 	{
-		std::cout << "File created: " << this->get_name() + "_shrubbery" << std::endl;
-		std::ofstream file((this->get_name() + "_shrubbery").c_str());
+		std::cout << _target + "_shrubbery file has been created successfully" << std::endl;
+		std::ofstream file((_target + "_shrubbery").c_str());
 		file << "                      ___" << std::endl;
 		file << "                _,-'\"\"   \"\"\"\"`--." << std::endl;
 		file << "             ,-'          __,,-- \\" << std::endl;

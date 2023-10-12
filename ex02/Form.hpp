@@ -1,6 +1,7 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
+#include <exception>
 #include <iostream>
 #include "Bureaucrat.hpp"
 
@@ -31,7 +32,29 @@ class Form
 		void	GradeTooHighException(void);
 		void	NotSignedException(void);
 
-		void	beSigned(Bureaucrat *b);
+		void			beSigned(const Bureaucrat& b);
+		virtual void	execute( const Bureaucrat& executor ) const = 0;
+};
+
+class NotSignedException : public std::exception {
+public:
+    const char* what() const throw() {
+        return "The form is not signed.";
+    }
+};
+
+class GradeTooHighException : public std::exception {
+public:
+    const char* what() const throw() {
+        return "The grade is too high to execute the form.";
+    }
+};
+
+class GradeTooLowException : public std::exception {
+public:
+    const char* what() const throw() {
+        return "The grade is too low to execute the form.";
+    }
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& form);

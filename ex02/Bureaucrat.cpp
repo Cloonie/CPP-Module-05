@@ -100,9 +100,22 @@ void Bureaucrat::decrementGrade()
 	}
 }
 
-void	Bureaucrat::signForm(Form *f)
+void	Bureaucrat::signForm(Form & form)
 {
-	f->beSigned(this);
+	form.beSigned(*this);
+}
+
+void	Bureaucrat::executeForm(Form const & form)
+{
+	if (form.get_isSigned() == false)
+		std::cout << "Form is not signed" << std::endl;
+	else if (getGrade() > form.get_gradeExec())
+		std::cout << "Grade requirements not met to execute" << std::endl;
+	else
+	{
+		std::cout << getName() << " executed " << form.get_name() << std::endl;
+		form.execute(*this);
+	}
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
