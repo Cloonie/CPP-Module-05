@@ -2,7 +2,7 @@
 
 Form::Form() : _name("Default"), _isSigned(false), _gradeSign(150), _gradeExec(150)
 {
-	std::cout << "A default Form named [" << _name <<
+	std::cout << std::boolalpha << "A default Form named [" << _name <<
 		"] with signed status of [" << _isSigned <<
 		"] has been constructed" << std::endl;
 	checkGrade(_gradeSign);
@@ -17,14 +17,14 @@ Form::Form(const std::string name, bool isSigned, int gradeSign, int gradeExec)
 {
 	checkGrade(_gradeSign);
 	checkGrade(_gradeExec);
-	std::cout << "A Form named [" << _name <<
+	std::cout << std::boolalpha << "A Form named [" << _name <<
 		"] with signed status of [" << _isSigned <<
 		"] has been constructed" << std::endl;
 }
 
 Form::~Form()
 {
-	std::cout << "A Form named [" << _name <<
+	std::cout << std::boolalpha << "A Form named [" << _name <<
 		"] with signed status of [" << _isSigned <<
 		"] has been destructed" << std::endl;
 }

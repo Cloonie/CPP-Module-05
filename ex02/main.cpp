@@ -1,17 +1,25 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int	main(void)
 {
 	// ~~~~ default constructor ~~~
 	std::cout << "\n~~~ DEFAULT CONSTRUCTOR ~~~" << std::endl;
-	ShrubberyCreationForm scf1("hello");
-	Bureaucrat b1("John", 137);
+	Bureaucrat b1("John", 72);
 
-	// b1.signForm(&scf1);
-	std::cout << scf1 << std::endl;
-	scf1.execute(b1);
+	std::cout << "\n~~~ ShrubberyCreationForm ~~~" << std::endl;
+	ShrubberyCreationForm scf("SCF");
+	b1.signForm(&scf);
+	std::cout << scf << std::endl;
+	scf.execute(b1);
+
+	std::cout << "\n~~~ RobotomyRequestForm ~~~" << std::endl;
+	RobotomyRequestForm rrf("RRF");
+	b1.signForm(&rrf);
+	std::cout << rrf << std::endl;
+	rrf.execute(b1);
 
 	// std::cout << "\n~~~ GRADE LOWER SIGNING ~~~" << std::endl;
 	// b1.signForm(&f1);

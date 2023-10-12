@@ -1,11 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
 
-// ShrubberyCreationForm::ShrubberyCreationForm()
-// 	: Form("ShrubberyCreationForm", 145, 137), _target("default")
-// {
-// 	std::cout << "Default ShrubberyCreationForm has been constructed" << std::endl;
-// }
-
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
 	: Form("ShrubberyCreationForm", false, 145, 137), _target(target)
 {
@@ -32,9 +26,9 @@ ShrubberyCreationForm& ShrubberyCreationForm:: operator=(const ShrubberyCreation
 void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 {
 	if (this->get_isSigned() == false)
-		std::cout << "Form not signed" << std::endl;
+		std::cout << "Form is not signed" << std::endl;
 	else if (executor.getGrade() > this->get_gradeExec())
-		std::cout << "Grade requirements not met" << std::endl;
+		std::cout << "Grade requirements not met to execute" << std::endl;
 	else
 	{
 		std::cout << "File created: " << this->get_name() + "_shrubbery" << std::endl;
