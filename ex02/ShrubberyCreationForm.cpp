@@ -1,7 +1,7 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
-	: Form("ShrubberyCreationForm", false, 145, 137), _target(target)
+	: AForm("ShrubberyCreationForm", false, 145, 137), _target(target)
 {
 	std::cout << "ShrubberyCreationForm has been constructed with target: " << _target << std::endl;
 }
@@ -12,7 +12,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& ref)
-	: Form(ref), _target(ref._target)
+	: AForm(ref), _target(ref._target)
 {
 	std::cout << "ShrubberyCreationForm has been copied" << std::endl;
 }

@@ -1,6 +1,6 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form() : _name("Default"), _isSigned(false), _gradeSign(150), _gradeExec(150)
+AForm::AForm() : _name("Default"), _isSigned(false), _gradeSign(150), _gradeExec(150)
 {
 	std::cout << std::boolalpha << "A default Form named [" << _name <<
 		"] with signed status of [" << _isSigned <<
@@ -9,7 +9,7 @@ Form::Form() : _name("Default"), _isSigned(false), _gradeSign(150), _gradeExec(1
 	checkGrade(_gradeExec);
 }
 
-Form::Form(const std::string name, bool isSigned, int gradeSign, int gradeExec)
+AForm::AForm(const std::string name, bool isSigned, int gradeSign, int gradeExec)
 	: _name(name)
 	, _isSigned(isSigned)
 	, _gradeSign(gradeSign)
@@ -22,14 +22,14 @@ Form::Form(const std::string name, bool isSigned, int gradeSign, int gradeExec)
 		"] has been constructed" << std::endl;
 }
 
-Form::~Form()
+AForm::~AForm()
 {
 	std::cout << std::boolalpha << "A Form named [" << _name <<
 		"] with signed status of [" << _isSigned <<
 		"] has been destructed" << std::endl;
 }
 
-Form::Form(const Form& ref)
+AForm::AForm(const AForm& ref)
 	: _name(ref._name)
 	, _isSigned(ref._isSigned)
 	, _gradeSign(ref._gradeSign)
@@ -40,33 +40,33 @@ Form::Form(const Form& ref)
 		*this = ref;
 }
 
-Form& Form::operator=(const Form& ref)
+AForm& AForm::operator=(const AForm& ref)
 {
 	if (this != &ref) {}
 	return (*this);
 }
 
-const std::string Form::get_name() const
+const std::string AForm::get_name() const
 {
 	return (_name);
 }
 
-bool Form::get_isSigned() const
+bool AForm::get_isSigned() const
 {
 	return (_isSigned);
 }
 
-int Form::get_gradeSign() const
+int AForm::get_gradeSign() const
 {
 	return (_gradeSign);
 }
 
-int Form::get_gradeExec() const
+int AForm::get_gradeExec() const
 {
 	return (_gradeExec);
 }
 
-void	Form::checkGrade(int grade)
+void	AForm::checkGrade(int grade)
 {
 	try
 	{
@@ -81,22 +81,22 @@ void	Form::checkGrade(int grade)
 	}
 }
 
-void Form::GradeTooHighException()
+void AForm::GradeTooHighException()
 {
 	throw std::out_of_range("Grade Too High");
 }
 
-void Form::GradeTooLowException()
+void AForm::GradeTooLowException()
 {
 	throw std::out_of_range("Grade Too Low");
 }
 
-void Form::NotSignedException()
+void AForm::NotSignedException()
 {
 	throw std::out_of_range("Form not Signed");
 }
 
-void Form::beSigned(const Bureaucrat& b)
+void AForm::beSigned(const Bureaucrat& b)
 {
 	try
 	{
@@ -119,7 +119,7 @@ void Form::beSigned(const Bureaucrat& b)
 	}
 }
 
-std::ostream& operator<<(std::ostream& os, const Form& form)
+std::ostream& operator<<(std::ostream& os, const AForm& form)
 {
 	os << "Form - Name: [" << form.get_name() << "], Signed: [" << form.get_isSigned()
 		<< "], Grade to Sign: [" << form.get_gradeSign()

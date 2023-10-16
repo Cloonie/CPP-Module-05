@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <fstream>
 
-class ShrubberyCreationForm : public Form
+class ShrubberyCreationForm : public AForm
 {
 	private:
 		const std::string	_target;

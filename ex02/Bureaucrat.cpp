@@ -100,12 +100,12 @@ void Bureaucrat::decrementGrade()
 	}
 }
 
-void	Bureaucrat::signForm(Form & form)
+void	Bureaucrat::signForm(AForm & form)
 {
 	form.beSigned(*this);
 }
 
-void	Bureaucrat::executeForm(Form const & form)
+void	Bureaucrat::executeForm(AForm const & form)
 {
 	if (form.get_isSigned() == false)
 		std::cout << "Form is not signed" << std::endl;

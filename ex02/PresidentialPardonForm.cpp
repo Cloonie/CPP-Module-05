@@ -1,7 +1,7 @@
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-	: Form("PresidentialPardonForm", false, 25, 5), _target(target)
+	: AForm("PresidentialPardonForm", false, 25, 5), _target(target)
 {
 	std::cout << "PresidentialPardonForm has been constructed with target: " << _target << std::endl;
 }
@@ -12,7 +12,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& ref)
-	: Form(ref), _target(ref._target)
+	: AForm(ref), _target(ref._target)
 {
 	std::cout << "PresidentialPardonForm has been copied" << std::endl;
 }

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
 
-class RobotomyRequestForm : public Form
+class RobotomyRequestForm : public AForm
 {
 	private:
 		const std::string	_target;

@@ -1,7 +1,7 @@
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-	: Form("RobotomyRequestForm", false, 72, 45), _target(target)
+	: AForm("RobotomyRequestForm", false, 72, 45), _target(target)
 {
 	std::cout << "RobotomyRequestForm has been constructed with target: " << _target << std::endl;
 }
@@ -12,7 +12,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& ref)
-	: Form(ref), _target(ref._target)
+	: AForm(ref), _target(ref._target)
 {
 	std::cout << "RobotomyRequestForm has been copied" << std::endl;
 }
